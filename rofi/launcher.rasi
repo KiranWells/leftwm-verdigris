@@ -1,0 +1,102 @@
+/*
+ * A Rofi Screen Launcher Theme
+ */
+
+* {
+  // universal styles
+  background-color: inherit;
+  text-color: inherit;
+  font: "Cantarell 14";
+  // color theme
+  background:     #1f1d2eff;
+  background-alt: #26233aff;
+  foreground:     #e0def4ff;
+  border:         #26233aff;
+  border-alt:     #6e6a86ff;
+  selected:       #26233aff;
+  urgent:         #ebbcbaff;
+  cyn:            #9ccfd8ff;
+  orng:           #ebbcbaff;
+}
+
+configuration {
+  show-icons: true;
+  display-drun: "";
+  drun-display-format: "{name}";
+  disable-history: false;
+}
+
+window {
+  background-color: @background;
+  text-color: @foreground;
+  border-radius: 0em 0em 50px 50px;
+  padding: 0em 1.5em 0em 1.5em;
+  height: 550px;
+  width: 600px;
+  location: north;
+}
+
+mainbox {
+  orientation: horizontal;
+  children: [section];
+}
+
+section {
+  expand: true;
+  spacing: 0px;
+  children: [ inputbar, listview ];
+}
+
+listview {
+  margin: 1em;
+  columns: 3;
+  layout: vertical;
+}
+
+inputbar {
+  children: [ prompt, entry ];
+  position: center;
+}
+
+prompt {
+  enabled: true;
+  background-color: @orng;
+  text-color: @background;
+  font: "FiraCode Nerd Font 40";
+  padding: 0px 32px 10px 30px;
+  border-radius: 0px 0px 50px 50px;
+  margin: 0em 1em 0em 0em; 
+  vertical-align: 0.5;
+}
+
+entry {
+  background-color: @cyn;
+  border-radius: 0px 0px 50px 50px;
+  padding: 0em 2em;
+  text-color: @background;
+  vertical-align: 0.5;
+  expand: true;
+  placeholder: "Search Applications";
+  blink: true;
+}
+
+element {
+  orientation: vertical;
+  padding: 1em;
+}
+
+element-text {
+  expand: true;
+  horizontal-align: 0.5;
+  margin: 0.5em 0 0 0;
+}
+
+element-icon {
+  size: 48px;
+  horizontal-align: 0.5;
+}
+
+element selected {
+  background-color: @selected;
+  border-radius: 20px;
+}

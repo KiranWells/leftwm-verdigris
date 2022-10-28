@@ -1,0 +1,162 @@
+@use "colors.scss" as colors;
+
+.bar {
+  color: colors.$fg;
+  background-color: colors.$bg;
+  font-size: 24px;
+
+  .startbar {
+    border-radius: 0px 20px 20px 0px;
+    background-color: colors.$bga;
+  }
+
+  .endbar {
+    border-radius: 20px 0px 0px 20px;
+    background-color: colors.$bga;
+  }
+
+  scale {
+    padding: 0px 10px;
+
+    slider {
+      padding: 5px;
+      border-radius: 50%;
+      background-color: colors.$fg;
+    }
+
+    trough {
+      border-radius: 15px;
+      background: colors.$bg;
+      min-height: 4px;
+
+      highlight {
+        border-radius: 15px 0px 0px 15px;
+      }
+    }
+  }
+
+  // widgets
+
+  .weather-small {
+    $color: colors.$rose;
+
+    .temp {
+      padding: 0px 7px;
+    }
+
+    .icon {
+      background-color: $color;
+      color: colors.$bg;
+      font-family: "FiraCode Nerd Font";
+    }
+  }
+
+  .clock {
+    background-color: colors.$bga;
+    $color: colors.$bga;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 0px 5px;
+
+    .top {
+      padding: 0px 5px;
+    }
+
+    .bottom {
+      padding: 0px 7px;
+      border-radius: 20px;
+      background-color: $color;
+    }
+
+    .icon {
+      background-color: colors.$foam;
+      color: colors.$bg;
+    }
+  }
+
+  .desktop {
+    transition: background-color 100ms;
+  }
+
+  .desktop:hover:not(.selected-desktop) .icon {
+    background-color: colors.$bga;
+  }
+
+  .selected-desktop .icon {
+    background-color: colors.$subtle;
+    color: colors.$bg;
+  }
+
+  .battery {
+    .icon {
+      background: colors.$pine;
+      color: colors.$bg;
+    }
+
+    scale trough highlight {
+      background: colors.$pine;
+    }
+
+    scale slider {
+      background: colors.$pine;
+    }
+  }
+
+  .volume-extra-button .icon {
+    background-color: colors.$pine;
+    color: colors.$bg;
+  }
+
+  .mic {
+    $color: colors.$pine;
+
+    .icon {
+      background: $color;
+      color: colors.$bg;
+    }
+
+    scale trough highlight {
+      background: $color;
+    }
+  }
+
+  .volume {
+    $color: colors.$pine;
+
+    .icon {
+      background: $color;
+      color: colors.$bg;
+    }
+
+    scale trough highlight {
+      background: $color;
+    }
+  }
+
+  .brightness {
+    $color: colors.$rose;
+
+    .icon {
+      background: $color;
+      color: colors.$bg;
+    }
+
+    scale trough highlight {
+      background: $color;
+    }
+  }
+
+  .network,
+  .bluetooth {
+    .icon {
+      transition: color 200ms;
+    }
+  }
+
+  .network:hover,
+  .bluetooth:hover {
+    .icon {
+      background-color: colors.$bg;
+    }
+  }
+}

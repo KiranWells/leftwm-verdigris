@@ -1,0 +1,96 @@
+;;(box :class "cat" "‍  ／|、
+;;  (ᐤ、ₒ 7
+;;   |、∼৲
+;;  じしf_,)ノ")
+
+;; weather vars
+(defpoll WEATHER_TEXT :interval "60s" `./scripts/weather_info --stat`)
+(defpoll WEATHER_COLOR :interval "60s" `./scripts/weather_info --hex`)
+(defpoll WEATHER_QUOTE :interval "60s" `./scripts/weather_info --quote --quote2`)
+(defpoll WEATHER_CITY :interval "60s" `./scripts/weather_info --city`)
+
+;; network vars
+(defvar SHOW_SAVED_NETS false)
+(defvar NET_IN_PROGRESS false)
+(defpoll NETS :interval "5s" :timeout "10s" `./scripts/network-helper.py --list-available`)
+(defpoll SAVED_NETS :interval "5s" :timeout "10s" `./scripts/network-helper.py --list-saved`)
+
+;; bluetooth vars
+(defvar SHOW_SAVED_DEVS false)
+(defvar BT_IN_PROGRESS false)
+(defpoll DEVS :interval "2s" :timeout "10s" `./scripts/bluetooth-helper.py --list-available`)
+(defvar BT_SCAN_ON false)
+
+;; volume
+(defpoll VOLUME_EXTRAS :interval "3s" `./scripts/volume-helper.py --list`)
+
+(defwidget date []
+  (box :class "date" :space-evenly false
+      (box :class "datewords" :orientation "h" :halign "center" DATE)
+      (icon "")))
+
+(defwidget weather []
+  (button
+       :class "weather popup"
+       :onclick "eww -c . close background-overlay weather"
+    (box :orientation "v" :space-evenly false :spacing 5
+      (box :orientation "h" :valign "end" :space-evenly false :class "weather-top"
+        (box :class "weather-text" 
+             :orientation "v"
+             :space-evenly false
+          (box :class "weather-temp" :orientation "h" :halign "start" {WEATHER_TEMP}) 
+          (box :orientation "h" :halign "start" {WEATHER_TEXT})
+          (box :class "weather-city" :orientation "h" :halign "start" WEATHER_CITY))
+        (icon :shift -30 {WEATHER_ICON})))))
+
+(defwidget volume-extra []
+  (box :class "volume-extra-widget popup" :orientation "h" :space-evenly false
+      :halign "end"
+    (icon :shift -30 "")
+    (box :class "popup-main" 
+      (scroll :class "popup-list" :hscroll false (literal :content VOLUME_EXTRAS)))))
+
+(defwidget wifi []
+  (box :class "wifi popup" :orientation "h" :space-evenly false
+      :halign "end"
+    (icon 
+      :shift {NET_IN_PROGRESS ? 0: -30}
+      {NET_IN_PROGRESS ? "": NETWORK_STATUS})
+    (box :class "popup-main" 
+      :orientation "v"
+      :space-evenly false
+      :spacing 10
+      (box :class "popup-buttons" :spacing 7
+        (button 
+          :class {SHOW_SAVED_NETS ? "popup-button" : "popup-button selected"}
+          :onclick "eww -c . update SHOW_SAVED_NETS=false"
+          "Available")
+        (button 
+          :class {SHOW_SAVED_NETS ? "popup-button selected" : "popup-button"}
+          :onclick "eww -c . update SHOW_SAVED_NETS=true"
+          "Saved"))
+      (scroll :hscroll false :class "popup-list" (literal :content {SHOW_SAVED_NETS ? SAVED_NETS : NETS})))))
+
+(defwidget bluetoothctl []
+  (box :class "bluetoothctl popup" :orientation "h" :space-evenly false 
+      :halign "end"
+    (icon {
+        BT_IN_PROGRESS ? "" : 
+        BLUETOOTH_CONN == "0" ? "" : 
+        BLUETOOTH_DEV == "0" ? "" : ""
+        })
+    (box :class "popup-main" 
+      :orientation "v"
+      :space-evenly false
+      :spacing 10
+      (box :class "popup-buttons" :spacing 5
+        (button 
+          :class {BLUETOOTH_CONN == "0" ? "popup-button" : "popup-button selected"}
+          :onclick "./scripts/bluetooth-helper.py --toggle-power"
+          {BLUETOOTH_CONN != "0" ? "Turn Off" : "Turn On"})
+        (button 
+          :class {BT_SCAN_ON ? "popup-button selected" : "popup-button"}
+          :onclick "./scripts/bluetooth-helper.py --toggle-scan"
+          :timeout "20s"
+          {BT_SCAN_ON ? "Scanning" : "Start Scan"}))
+      (scroll :hscroll false :class "popup-list" (literal :content DEVS)))))

@@ -1,0 +1,208 @@
+@use "colors.scss" as colors;
+
+.date {
+  background-color: colors.$bga;
+  padding: 10px;
+  border-radius: 0px 210px 210px 0px;
+
+  .icon {
+    background-color: colors.$rose;
+    color: colors.$bg;
+    font-size: 55px;
+  }
+
+  .datewords {
+    padding: 0px 15px;
+  }
+}
+
+.weather {
+  background-color: colors.$bga;
+  color: colors.$fg;
+  font-family: "Cantarell";
+  border-radius: 0px 210px 210px 0px;
+  padding: 15px;
+
+  .icon {
+    background-color: colors.$foam;
+    font-size: 90px;
+    margin-left: 15px;
+  }
+
+  .weather-temp {
+    font-size: 65px;
+    font-weight: bold;
+  }
+
+  .weather-text {
+    padding-bottom: 10px;
+  }
+
+  .weather-top {
+    font-size: 24px;
+  }
+
+  .weather-city {
+    font-size: 12px;
+  }
+}
+
+.datewords {
+  color: colors.$fg;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.wifi,
+.bluetoothctl {
+  background-color: colors.$bg;
+  color: colors.$fg;
+
+  .popup-list {
+    min-height: 110px;
+    min-width: 300px;
+  }
+
+  .icon {
+    margin-right: 0.1em;
+    font-size: 100px;
+  }
+
+  :hover {
+    background-color: colors.$bga;
+  }
+
+  .popup-button:hover:not(.selected) {
+    background-color: colors.$bg;
+  }
+
+  .selected:hover {
+    color: colors.$bga;
+  }
+}
+
+.volume-extra-widget {
+  $color: colors.$pine;
+  background-color: colors.$bga;
+  color: colors.$fg;
+  font-size: 14px;
+  font-family: 'Cantarell';
+  border-radius: 210px 0px 0px 210px;
+  padding: 15px;
+
+  .popup-list {
+    min-height: 130px;
+  }
+
+  .icon {
+    font-size: 110px;
+    background-color: colors.$pine;
+    margin-right: 15px;
+  }
+
+  .title {
+    background-color: colors.$bg;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 15px;
+    margin-bottom: 5px;
+  }
+
+  .label {
+    padding: 3px 7px;
+  }
+
+  .input,
+  .output {
+    margin: 3px;
+
+    .icon {
+      font-size: inherit;
+      margin: 0px 0px 0px 5px;
+    }
+  }
+
+  scale trough {
+    background: colors.$bg;
+  }
+
+  scale trough highlight {
+    background: $color;
+    min-height: 5px;
+  }
+
+  scale slider {
+    background-color: colors.$rose;
+  }
+
+  .input {
+    $color: colors.$foam;
+
+    .icon {
+      background-color: $color;
+    }
+
+    scale trough highlight {
+      background-color: $color;
+    }
+  }
+}
+
+.bluetoothctl {
+  background-color: colors.$bga;
+  $color: colors.$pine;
+  border-radius: 210px 0px 0px 210px;
+  padding: 15px;
+
+  .icon {
+    background-color: $color;
+  }
+
+  .selected {
+    background-color: $color;
+    color: colors.$bg;
+  }
+}
+
+.wifi {
+  background-color: colors.$bga;
+  $color: colors.$foam;
+  border-radius: 210px 0px 0px 210px;
+  padding: 15px;
+
+  .icon {
+    background-color: $color;
+  }
+
+  .selected {
+    background-color: $color;
+    color: colors.$bg;
+  }
+}
+
+.popup .icon {
+  color: colors.$bg;
+}
+
+.popup-button {
+  padding: 3px 10px;
+  font-weight: 600;
+  background-color: colors.$bg;
+  border-radius: 25px;
+  font-size: 16px;
+}
+
+.popup-option {
+  padding: 7px 10px;
+  background-color: colors.$bga;
+  border-radius: 30px;
+
+  .popup-strength {
+    font-family: monospace;
+    letter-spacing: 1px;
+  }
+}
+
+scrolledwindow {
+  border-right: 2px solid colors.$bg;
+}

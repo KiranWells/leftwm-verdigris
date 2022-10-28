@@ -1,0 +1,97 @@
+┏━╸╻ ╻╻ ╻
+┣╸ ┃╻┃┃╻┃
+┗━╸┗┻┛┗┻┛
+╺━━━━━━━╸
+
+Inspiration taken from:
+https://github.com/saimoomedits/eww-widgets/
+https://github.com/adi1090x/widgets
+
+Some scripts adapted from Archcraft scripts:
+Author: Aditya Shakya
+Github: @adi1090x
+
+Weather script adapted from:
+https://github.com/Axarva/dotfiles-2.0/blob/main/config/eww-1920/scripts/getweather
+
+Lock script uses partial config from:
+https://github.com/janleigh/dotfiles/blob/master/bin/lck
+
+┏━┓┏━┓┏━╸╻
+┣┳┛┃ ┃┣╸ ┃
+╹┗╸┗━┛╹  ╹
+╺━━━━━━━━╸
+
+Inspiration taken from:
+https://github.com/adi1090x/rofi
+
+
+╻ ╻┏━┓╻  ╻  ┏━┓┏━┓┏━┓┏━╸┏━┓┏━┓
+┃╻┃┣━┫┃  ┃  ┣━┛┣━┫┣━┛┣╸ ┣┳┛┗━┓
+┗┻┛╹ ╹┗━╸┗━╸╹  ╹ ╹╹  ┗━╸╹┗╸┗━┛
+╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+
+Lock, Fennix: Custom design; Species created by RiverofStars:
+https://fennix.carrd.co/
+
+
+╻  ┏━╸┏━╸╺┳╸╻ ╻┏┳┓
+┃  ┣╸ ┣╸  ┃ ┃╻┃┃┃┃
+┗━╸┗━╸╹   ╹ ┗┻┛╹ ╹
+╺━━━━━━━━━━━━━━━━╸
+
+The up/down script is based on an example from:
+https://github.com/b4skyx/leftwm-soothe/blob/master/theme/up
+
+
+┏━┓╺┳╸┏━┓╻  ┏━┓┏┓╻┏━╸╺┳╸┏━┓┏━┓╻ ╻
+┗━┓ ┃ ┣━┫┃  ┃ ┃┃┗┫┣╸  ┃ ┣┳┛┣━┫┗┳┛
+┗━┛ ╹ ╹ ╹┗━╸┗━┛╹ ╹┗━╸ ╹ ╹┗╸╹ ╹ ╹ 
+╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+Original taken from:
+https://github.com/kolbusa/stalonetray/blob/master/stalonetrayrc.sample.in
+
+
+╻┏ ╻╺┳╸╺┳╸╻ ╻
+┣┻┓┃ ┃  ┃ ┗┳┛
+╹ ╹╹ ╹  ╹  ╹ 
+╺━━━━━━━━━━━╸
+
+Colors taken from: 
+https://github.com/dexpota/kitty-themes/blob/master/themes/ayu_mirage.conf
+
+
+┏━┓╻┏━╸┏━┓┏┳┓
+┣━┛┃┃  ┃ ┃┃┃┃
+╹  ╹┗━╸┗━┛╹ ╹
+╺━━━━━━━━━━━╸
+
+Template from:
+https://raw.githubusercontent.com/yshui/picom/next/picom.sample.conf
+
+
+╺┳┓╻ ╻┏┓╻┏━┓╺┳╸
+ ┃┃┃ ┃┃┗┫┗━┓ ┃ 
+╺┻┛┗━┛╹ ╹┗━┛ ╹ 
+╺━━━━━━━━━━━━━╸
+
+Template from:
+https://raw.githubusercontent.com/dunst-project/dunst/master/dunstrc
+
+
+┏━┓╻  ╻ ╻┏┳┓┏━┓╻ ╻╺┳╸╻ ╻
+┣━┛┃  ┗┳┛┃┃┃┃ ┃┃ ┃ ┃ ┣━┫
+╹  ┗━╸ ╹ ╹ ╹┗━┛┗━┛ ╹ ╹ ╹
+╺━━━━━━━━━━━━━━━━━━━━━━╸
+
+Base from:
+https://github.com/Hugopikachu/plymouth-theme-chain
+
+┏━╸┏━┓╻ ╻┏┓ 
+┃╺┓┣┳┛┃ ┃┣┻┓
+┗━┛╹┗╸┗━┛┗━┛
+╺━━━━━━━━━━╸
+
+Adapted from the Vimix theme:
+https://github.com/vinceliuice/grub2-themes
+Icons taken directly from the white icons-2k folder

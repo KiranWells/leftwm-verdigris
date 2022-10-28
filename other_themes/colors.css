@@ -1,0 +1,30 @@
+/**
+ * Colors for the Cascade Firefox theme. Requires adding the following into 
+ * the userChrome.css file, and removing the default colors.
+
+@import url("colors.css");
+
+ * Cascade Repository:
+ *   Mouse edition: https://github.com/andreasgrafen/cascade
+ *   Original:      https://github.com/crambaud/cascade
+ *
+ * Keeps this from being backed up
+ * NOBACKUP
+ */
+
+:root {
+    /* Dark Custom Colors */
+    --window-colour: #26233a;
+    --secondary-colour: #191724;
+    --inverted-colour: #e0def4;
+
+    /* Container Tab Colors */
+    --uc-identity-color-blue: #31748f;
+    --uc-identity-color-turquoise: #9ccfd8;
+    --uc-identity-color-green: #6fbe97;
+    --uc-identity-color-yellow: #f6c177;
+    --uc-identity-color-orange: #d7a27e;
+    --uc-identity-color-red: #ebbcba;
+    --uc-identity-color-pink: #eb6f92;
+    --uc-identity-color-purple: #c4a7e7;
+}

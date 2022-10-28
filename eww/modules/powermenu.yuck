@@ -1,0 +1,19 @@
+;; logout selection
+
+(defwidget logout [] 
+  (box :orientation "h" :space-evenly false :class "powermenu"
+    (optn :icon "" :shift -7 :cmd "./scripts/powerscript lock")
+    (optn :icon "" :shift -20 :cmd "./scripts/powerscript sleep")
+    ;; (optn :icon "" :cmd "./scripts/powerscript logout")
+    (optn :icon "鈴" :shift -30 :cmd "./scripts/powerscript hibernate")
+    (box :class "main" (icon "拉"))
+    (optn :icon "ﰇ" :vshift 4 :cmd "./scripts/powerscript restart")
+    (optn :icon "襤" :cmd "./scripts/powerscript shutdown")
+    (optn :icon "" :cmd "eww -c . close quit background-overlay")))
+
+(defwidget 
+  optn [icon cmd ?shift ?c]
+  (button
+    :onclick cmd
+    :timeout "5s"
+    (icon :shift shift icon)))

@@ -1,0 +1,16 @@
+@use "styles/colors.scss" as colors;
+@use "styles/powermenu.scss";
+@use "styles/bar.scss";
+@use "styles/popups.scss";
+@use "styles/lock.scss";
+
+* {
+  all: unset;
+}
+
+.icon {
+  font-family: "FiraCode Nerd Font";
+  border-radius: 50%;
+  min-width: 1.5em;
+  min-height: 1.5em;
+}

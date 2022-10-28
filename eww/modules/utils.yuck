@@ -1,0 +1,33 @@
+;; utility widgets to make styling easier
+
+(defwidget icon [?shift ?vshift]
+    (box :class "icon" 
+         :halign "center"
+         :style {
+            (shift > 0 ? 
+              "padding-left: ${shift}px; min-width: calc(1.5em - ${shift}px)" : 
+              "padding-right: ${-shift}px; min-width: calc(1.5em - ${-shift}px)")
+              }
+          (children)))
+
+(defwidget padding [width]
+  (box :style "min-width: ${width}px" ""))
+
+;; a button and hidden slider which shows on hover
+(defwidget button-and-slider [value label ?shift ?onchange ?onclick ?tooltip]
+      (box :orientation "h"
+           :space-evenly false
+           :tooltip tooltip
+          (scale :min 0
+                 :max 101
+                 :orientation "h"
+                 :active {onchange != ""}
+                 :value value
+                 :width 80
+                 :onchange onchange)
+          (box :visible {!(onclick != "")}
+               (icon label))
+          (button :onclick onclick
+                  :visible {onclick != ""}
+                  :timeout "1s"
+                    (icon :shift shift label))))

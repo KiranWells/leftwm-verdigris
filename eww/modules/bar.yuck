@@ -1,0 +1,175 @@
+;; Task bar configuration
+
+;; bar-specific polls
+(deflisten DESKTOP `xprop -spy -root _NET_CURRENT_DESKTOP`)
+
+;; reveal variables
+(defvar BATTERY_REVEALER false)
+(defvar SOUND_REVEALER false)
+(defvar BRIGHTNESS_REVEALER false)
+(defvar WEATHER_REVEALER false)
+
+;; main widget
+;; add or remove modules here to have them show up on the taskbar
+(defwidget bar []
+  (centerbox
+    :orientation "h"
+    :class "bar"
+        (box :class "startbar"
+          :orientation "h" 
+          :space-evenly false 
+          :halign "start"
+          (weather-small)
+          (brightness)
+          ;; (battery)
+        )
+        (box :class "centerbar"
+          :orientation "h" 
+          :space-evenly false 
+          :halign "center"
+          ;; the padding is necessary to properly center the icons
+          (desktop :number 1 :label 1  :icon "舘" :shift -3)
+          (desktop :number 2 :label 2  :icon "" :shift -9)
+          (desktop :number 3 :label 3  :icon "" :shift -1)
+          (desktop :number 4 :label 4  :icon "" :shift -2)
+          (desktop :number 5 :label 5  :icon "" :shift -2)
+          (padding :width 50)
+          (clock)
+          (padding :width 50)
+          (desktop :number 6 :label 6  :icon "" :shift -2)
+          (desktop :number 7 :label 7  :icon "" :shift -5)
+          (desktop :number 8 :label 8  :icon "" :shift -4)
+          (desktop :number 9 :label 9  :icon "" :shift -7)
+          (desktop :number 0 :label 10 :icon "" :shift -5)
+        )
+        (box :class "endbar"
+          :orientation "h" 
+          :space-evenly false 
+          :halign "end"
+          (volume-extra-button)
+          (volume)
+          ;; (mic)
+          (bluetooth)
+          (network)
+        )
+    ))
+
+;; start bar widgets
+
+(defwidget volume-extra-button []
+  (button 
+    :class "volume-extra-button" 
+    :onclick "eww -c . open-many background-overlay volume-extra"
+      (icon "")))
+
+(defwidget clock []
+   (box
+    :class "clock"
+    :orientation "h"
+    :space-evenly false
+      (button :onclick "eww -c . open-many background-overlay date" :class "top" HRS)
+      (button 
+        :onclick "rofi -no-lazy-grab -show drun -theme ~/.config/leftwm/themes/current/rofi/launcher.rasi" 
+        :timeout "500s" 
+          (icon ""))
+      (button :onclick "eww -c . open-many background-overlay date"  :class "bottom" MIN)))
+
+(defwidget weather-small []
+(button :onclick "eww -c . open-many background-overlay weather"
+   (box :class "weather-small"
+        :space-evenly false
+        (box :class "temp" WEATHER_TEMP)
+        (icon :shift -10 "${WEATHER_ICON}"))))
+
+;; center bar widgets
+
+(defwidget desktop [number label icon shift]
+  (button
+    :onclick "xdotool key super+${number}"
+    :class { DESKTOP == "_NET_CURRENT_DESKTOP(CARDINAL) = ${label - 1}" ? "desktop selected-desktop": "desktop" }
+    (icon :shift {shift} icon)))
+
+;; end bar widgets
+
+(defwidget battery []
+  (box
+    :class {EWW_BATTERY.BAT0.status == "Charging" ? "battery charging": "battery"}
+    :space-evenly false
+    (button-and-slider 
+      :label {EWW_BATTERY.BAT0.status == "Charging" ? 
+       (EWW_BATTERY.BAT0.capacity < 10 ? "" : 
+        EWW_BATTERY.BAT0.capacity < 20 ? "" : 
+        EWW_BATTERY.BAT0.capacity < 30 ? "" : 
+        EWW_BATTERY.BAT0.capacity < 40 ? "" : 
+        EWW_BATTERY.BAT0.capacity < 50 ? "" : 
+        EWW_BATTERY.BAT0.capacity < 60 ? "" : 
+        EWW_BATTERY.BAT0.capacity < 70 ? "" : 
+        EWW_BATTERY.BAT0.capacity < 80 ? "" : 
+        EWW_BATTERY.BAT0.capacity < 90 ? "" : "") :
+       (EWW_BATTERY.BAT0.capacity < 10 ? "" : 
+        EWW_BATTERY.BAT0.capacity < 20 ? "" : 
+        EWW_BATTERY.BAT0.capacity < 30 ? "" : 
+        EWW_BATTERY.BAT0.capacity < 40 ? "" : 
+        EWW_BATTERY.BAT0.capacity < 50 ? "" : 
+        EWW_BATTERY.BAT0.capacity < 60 ? "" : 
+        EWW_BATTERY.BAT0.capacity < 70 ? "" : 
+        EWW_BATTERY.BAT0.capacity < 80 ? "" : 
+        EWW_BATTERY.BAT0.capacity < 90 ? "" : "")
+      }
+      :shift 3
+      :value {EWW_BATTERY.BAT0.capacity})))
+
+(defwidget mic []
+  (box
+  :class {MICMUTE == "off" ? "mic muted": "mic"}
+  :orientation "h"
+  (button-and-slider 
+    :label {MICMUTE == "off" ? "": ""}
+    :value {MICVOLUME}
+    :shift 2
+    :onchange "amixer -D pulse sset Capture {}%"
+    :onclick "amixer -D pulse sset Capture toggle")))
+
+(defwidget volume []
+  (box
+  :class {MUTE == "off" ? "volume muted": "volume"}
+  :orientation "h"
+  (button-and-slider 
+    :label {MUTE == "off" ? "": ""}
+    :value {VOLUME}
+    :shift -6
+    :onchange "amixer -D pulse sset Master {}%"
+    :onclick "amixer -D pulse sset Master toggle")))
+
+(defwidget brightness []
+  (box
+  :class "brightness"
+  :orientation "h"
+  (button-and-slider 
+    :label {BRIGHTNESS < 15 ? "" : 
+            BRIGHTNESS < 30 ? "" : 
+            BRIGHTNESS < 45 ? "" : 
+            BRIGHTNESS < 60 ? "" : 
+            BRIGHTNESS < 75 ? "" : 
+            BRIGHTNESS < 90 ? "" : ""}
+    :value {BRIGHTNESS}
+    :shift {BRIGHTNESS < 15 ? -7 : 
+            BRIGHTNESS < 30 ?  3 : 
+            BRIGHTNESS < 45 ?  3 : 
+            BRIGHTNESS < 60 ? -7 : 
+            BRIGHTNESS < 75 ? -7 : 
+            BRIGHTNESS < 90 ? -7 : -7}
+    :onchange "xbacklight -steps 1 -time 1 -set {}"
+    :onclick {BRIGHTNESS > 50 ? "xbacklight -set 10" : "xbacklight -set 100.0000"})))
+
+(defwidget bluetooth []
+  (button
+    :class "bluetooth"
+    :onclick "eww -c . open-many background-overlay bluetoothctl"
+    (icon {BLUETOOTH_CONN == "0" ? "" : BLUETOOTH_DEV == "0" ? "" : ""})))
+
+(defwidget network []
+  (button
+    :class "network"
+    :onclick "eww -c . open-many background-overlay wifi"
+    (icon :shift -7 NETWORK_STATUS)))

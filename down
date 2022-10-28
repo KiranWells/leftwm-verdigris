@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+leftwm command "UnloadTheme"
+
+# Stop picom or compton if it exists
+if [ -x "$(command -v picom)" ]; then
+  killall picom
+elif [ -x "$(command -v compton)" ]; then
+  killall compton
+fi
+
+## Close the bar if eww is running
+if [ -x "$(command -v eww)" ]; then
+  killall eww
+fi
+
+if [ -x "$(command -v settimed)" ]; then
+  killall settimed
+fi
+
+if [[ -x "$(command -v stalonetray)" && -f "$HOME/.config/stalonetrayrc" ]]; then
+  killall stalonetray
+fi
+
+if [[ -x "$(command -v gdbus)" ]]; then
+  # get rid of the locker
+  touch /tmp/theme-lock-shutdown
+
+  killall theme-locker
+  killall -u $USER gdbus
+fi
+
+# ensure things finish shutting down
+sleep 0.5
+
+rm -f /tmp/theme-lock-shutdown

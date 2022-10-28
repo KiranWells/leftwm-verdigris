@@ -1,0 +1,9 @@
+
+[Plymouth Theme]
+Name=tail
+Description=An animated tail splash screen using the rose pine theme
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/tail/images
+ScriptFile=/usr/share/plymouth/themes/tail/tail.script

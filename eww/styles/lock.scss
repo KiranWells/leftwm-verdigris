@@ -1,0 +1,15 @@
+@use "colors.scss" as colors;
+
+.lock-background {
+  background-image: url("../wallpapers/lock-background.png");
+  background-position: center;
+  background-size: cover;
+  color: colors.$fg;
+
+  .clock {
+    font-family: "Noto Sans";
+    font-size: 40em;
+    font-weight: 400;
+    color: colors.$foam;
+  }
+}

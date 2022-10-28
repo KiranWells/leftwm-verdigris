@@ -1,0 +1,29 @@
+#!/bin/bash
+
+export SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+
+eww -c $SCRIPTPATH/.. close quit background-overlay
+
+case $1 in
+  lock)
+    loginctl lock-session
+    ;;
+  logout)
+    killall leftwm
+    ;;
+  hibernate)
+    systemctl hibernate
+    ;;
+  sleep)
+    systemctl suspend
+    ;;
+  restart)
+    systemctl reboot
+    ;;
+  shutdown)
+    systemctl poweroff
+    ;;
+  default)
+    notify-send "Action not found: $1"
+    ;;
+esac

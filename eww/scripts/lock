@@ -1,0 +1,65 @@
+#!/bin/bash
+
+SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+
+# tests if the lock screen is up
+function test_for_eww() {
+  eww -c $SCRIPTPATH/.. windows | grep '*lock-background'
+}
+
+# if the lock screen is running, do nothing
+if test_for_eww; then
+  exit 0
+fi
+
+eww -c $SCRIPTPATH/.. open lock-background
+
+# wait for eww to actually put up the background
+while ! test_for_eww; do
+  sleep 0.05
+done
+
+# add some delay if i3lock renders below eww
+# sleep 0.1
+
+# this section of the script is run asynchronously, to allow for the script to exit as soon as eww starts
+(
+  # modified from https://github.com/janleigh/dotfiles/blob/master/bin/lck
+  # puts a lock icon at the bottom center with the i3lock circle around it
+  i3lock -n -c 00000000 -e \
+    --pass-media-keys --pass-screen-keys \
+    --pass-power-keys --pass-volume-keys \
+    --radius 64 \
+    \
+    --time-str="" \
+    --verif-text="" \
+    --wrong-text="" \
+    --lock-text="" \
+    --lockfailed-text="" \
+    --greeter-text="" \
+    --noinput-text="" \
+    --no-modkey-text \
+    \
+    --bar-indicator \
+    --bar-orientation=horizontal \
+    --bar-periodic-step=15 \
+    --bar-direction=1 \
+    --bar-step=60 \
+    --bar-max-height=160 \
+    --bar-color=00000000 \
+    --bar-count=8 \
+    --bar-total-width=180 \
+    --bar-base-width=10 \
+    --bar-pos="w/2-90:h/2+365" \
+    \
+    --keyhl-color=26233a --bshl-color=31748f \
+    --ringver-color=ebceba --ringwrong-color=eb6f92
+
+
+  # don't close background unless the lock has happened
+  if [ $? -eq 0 ]; then
+    # the lock above will not exit until unlock occurs, at which point we 
+    # need to close the eww background
+    eww -c $SCRIPTPATH/.. close lock-background
+  fi
+) &

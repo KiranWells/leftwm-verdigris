@@ -1,0 +1,41 @@
+# GRUB2 Theme "bubbles"
+
+# Global Property
+title-text: ""
+desktop-image: "background.png"
+desktop-color: "#191724"
+terminal-left: "0"
+terminal-top: "0"
+terminal-width: "100%"
+terminal-height: "100%"
+terminal-border: "0"
+
+# Show the boot menu
++ boot_menu {
+  left = 30%
+  top = 30%
+  width = 45%
+  height = 60%
+  item_font = "DejaVu Sans Regular 48"
+  item_color = "#908caa"
+  selected_item_color = "#e0def4"
+  icon_width = 64
+  icon_height = 64
+  item_icon_space = 20
+  item_height = 73
+  item_padding = 5
+  item_spacing = 20
+  selected_item_pixmap_style = "selected_*.png"
+}
+
+# Show a countdown message using the label component
++ progress_bar {
+  top = 75%
+  left = 35%
+  width = 30%
+  height = 15
+  id = "__timeout__"
+  text = ""
+  bar_style = "bar_*.png"
+  highlight_style = "progress_*.png"
+}

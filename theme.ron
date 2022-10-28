@@ -1,0 +1,18 @@
+// theme specific configuration (borders, colors)
+#![enable(implicit_some)]
+ThemeSetting (
+    border_width: 6,
+    margin: 10,
+    workpace_margin: 10,
+    // to leave room for the sidebar
+    gutter: [
+        (
+            side: Top,
+            value: 40,
+        )
+    ],
+    default_border_color :"#191724",
+    floating_border_color :"#191724",
+    focused_border_color: "#26233a",
+    // on_new_window: "echo Hello World",
+)

@@ -1,0 +1,17 @@
+;; a lock widget to show when screen is locked
+
+(defpoll USER :interval "5m" `echo $USER`)
+
+(defwidget background []
+  (box :class "lock-background"
+       :halign "center"
+       :space-evenly false
+        (lock-clock-left)
+        (padding :width 1000)
+        (lock-clock-right)))
+
+(defwidget lock-clock-left []
+  (box :class "clock left" "${HRS}"))
+
+(defwidget lock-clock-right []
+  (box :class "clock right" "${MIN}"))

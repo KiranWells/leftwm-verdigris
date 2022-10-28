@@ -1,0 +1,21 @@
+@use "colors.scss" as colors;
+
+.powermenu {
+  background-color: colors.$bga;
+  border-radius: 100px;
+  font-size: 100px;
+  color: colors.$fg;
+
+  .main .icon {
+    background-color: colors.$rose;
+    color: colors.$bg;
+  }
+
+  .icon {
+    transition: background-color 100ms;
+  }
+
+  button:hover .icon {
+    background: colors.$bg;
+  }
+}
