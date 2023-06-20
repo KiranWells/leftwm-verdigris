@@ -28,17 +28,17 @@
           :space-evenly false 
           :halign "center"
           ;; the padding is necessary to properly center the icons
-          (desktop :number 1 :label 1  :icon "舘" :shift -3)
-          (desktop :number 2 :label 2  :icon "" :shift -9)
-          (desktop :number 3 :label 3  :icon "" :shift -1)
-          (desktop :number 4 :label 4  :icon "" :shift -2)
-          (desktop :number 5 :label 5  :icon "" :shift -2)
+          (desktop :number 1 :label 1  :icon "󰆼" :shift -1)
+          (desktop :number 2 :label 2  :icon "󰈹" :shift -4)
+          (desktop :number 3 :label 3  :icon "" :shift -3)
+          (desktop :number 4 :label 4  :icon "" :shift -8)
+          (desktop :number 5 :label 5  :icon "" :shift -6)
           (padding :width 50)
           (clock)
           (padding :width 50)
-          (desktop :number 6 :label 6  :icon "" :shift -2)
-          (desktop :number 7 :label 7  :icon "" :shift -5)
-          (desktop :number 8 :label 8  :icon "" :shift -4)
+          (desktop :number 6 :label 6  :icon "󰂺" :shift -1)
+          (desktop :number 7 :label 7  :icon "" :shift -6)
+          (desktop :number 8 :label 8  :icon "󰙯" :shift -4)
           (desktop :number 9 :label 9  :icon "" :shift -7)
           (desktop :number 0 :label 10 :icon "" :shift -5)
         )
@@ -50,7 +50,7 @@
           (volume)
           ;; (mic)
           (bluetooth)
-          (network)
+          ;; (network)
         )
     ))
 
@@ -97,24 +97,24 @@
     :space-evenly false
     (button-and-slider 
       :label {EWW_BATTERY.BAT0.status == "Charging" ? 
-       (EWW_BATTERY.BAT0.capacity < 10 ? "" : 
-        EWW_BATTERY.BAT0.capacity < 20 ? "" : 
-        EWW_BATTERY.BAT0.capacity < 30 ? "" : 
-        EWW_BATTERY.BAT0.capacity < 40 ? "" : 
-        EWW_BATTERY.BAT0.capacity < 50 ? "" : 
-        EWW_BATTERY.BAT0.capacity < 60 ? "" : 
-        EWW_BATTERY.BAT0.capacity < 70 ? "" : 
-        EWW_BATTERY.BAT0.capacity < 80 ? "" : 
-        EWW_BATTERY.BAT0.capacity < 90 ? "" : "") :
-       (EWW_BATTERY.BAT0.capacity < 10 ? "" : 
-        EWW_BATTERY.BAT0.capacity < 20 ? "" : 
-        EWW_BATTERY.BAT0.capacity < 30 ? "" : 
-        EWW_BATTERY.BAT0.capacity < 40 ? "" : 
-        EWW_BATTERY.BAT0.capacity < 50 ? "" : 
-        EWW_BATTERY.BAT0.capacity < 60 ? "" : 
-        EWW_BATTERY.BAT0.capacity < 70 ? "" : 
-        EWW_BATTERY.BAT0.capacity < 80 ? "" : 
-        EWW_BATTERY.BAT0.capacity < 90 ? "" : "")
+       (EWW_BATTERY.BAT0.capacity < 10 ? "󰢜" : 
+        EWW_BATTERY.BAT0.capacity < 20 ? "󰂆" : 
+        EWW_BATTERY.BAT0.capacity < 30 ? "󰂇" : 
+        EWW_BATTERY.BAT0.capacity < 40 ? "󰂈" : 
+        EWW_BATTERY.BAT0.capacity < 50 ? "󰢝" : 
+        EWW_BATTERY.BAT0.capacity < 60 ? "󰂉" : 
+        EWW_BATTERY.BAT0.capacity < 70 ? "󰢞" : 
+        EWW_BATTERY.BAT0.capacity < 80 ? "󰂊" : 
+        EWW_BATTERY.BAT0.capacity < 90 ? "󰂋" : "󰂅") :
+       (EWW_BATTERY.BAT0.capacity < 10 ? "󰁺" : 
+        EWW_BATTERY.BAT0.capacity < 20 ? "󰁻" : 
+        EWW_BATTERY.BAT0.capacity < 30 ? "󰁼" : 
+        EWW_BATTERY.BAT0.capacity < 40 ? "󰁽" : 
+        EWW_BATTERY.BAT0.capacity < 50 ? "󰁾" : 
+        EWW_BATTERY.BAT0.capacity < 60 ? "󰁿" : 
+        EWW_BATTERY.BAT0.capacity < 70 ? "󰂀" : 
+        EWW_BATTERY.BAT0.capacity < 80 ? "󰂁" : 
+        EWW_BATTERY.BAT0.capacity < 90 ? "󰂂" : "󰁹")
       }
       :shift 3
       :value {EWW_BATTERY.BAT0.capacity})))
@@ -124,7 +124,7 @@
   :class {MICMUTE == "off" ? "mic muted": "mic"}
   :orientation "h"
   (button-and-slider 
-    :label {MICMUTE == "off" ? "": ""}
+    :label {MICMUTE == "off" ? "": ""}
     :value {MICVOLUME}
     :shift 2
     :onchange "amixer -D pulse sset Capture {}%"
@@ -146,12 +146,12 @@
   :class "brightness"
   :orientation "h"
   (button-and-slider 
-    :label {BRIGHTNESS < 15 ? "" : 
-            BRIGHTNESS < 30 ? "" : 
-            BRIGHTNESS < 45 ? "" : 
-            BRIGHTNESS < 60 ? "" : 
-            BRIGHTNESS < 75 ? "" : 
-            BRIGHTNESS < 90 ? "" : ""}
+    :label {BRIGHTNESS < 15 ? "󰃚" : 
+            BRIGHTNESS < 30 ? "󰃛" : 
+            BRIGHTNESS < 45 ? "󰃜" : 
+            BRIGHTNESS < 60 ? "󰃝" : 
+            BRIGHTNESS < 75 ? "󰃞" : 
+            BRIGHTNESS < 90 ? "󰃟" : "󰃠"}
     :value {BRIGHTNESS}
     :shift {BRIGHTNESS < 15 ? -7 : 
             BRIGHTNESS < 30 ?  3 : 
@@ -159,8 +159,9 @@
             BRIGHTNESS < 60 ? -7 : 
             BRIGHTNESS < 75 ? -7 : 
             BRIGHTNESS < 90 ? -7 : -7}
-    :onchange "xbacklight -steps 1 -time 1 -set {}"
-    :onclick {BRIGHTNESS > 50 ? "xbacklight -set 10" : "xbacklight -set 100.0000"})))
+    :timeout "10s"
+    :onchange "ddcutil setvcp 10 {}"
+    :onclick {BRIGHTNESS > 50 ? "ddcutil setvcp 10 1" : "ddcutil setvcp 10 100"})))
 
 (defwidget bluetooth []
   (button

@@ -53,7 +53,7 @@ done
     --bar-pos="w/2-90:h/2+365" \
     \
     --keyhl-color=26233a --bshl-color=31748f \
-    --ringver-color=ebceba --ringwrong-color=eb6f92
+    --ringver-color=ebceba --ringwrong-color=eb6f92 # --no-verify
 
 
   # don't close background unless the lock has happened

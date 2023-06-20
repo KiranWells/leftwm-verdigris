@@ -14,7 +14,7 @@ leftwm command "LoadTheme $SCRIPTPATH/theme.ron"
 
 # Boot picom or compton if it exists
 if [ -x "$(command -v picom)" ]; then
-  picom --experimental-backends &> /dev/null &
+  picom &> /tmp/picom-log &
 
   backup $HOME/.config/picom.conf
   cp $SCRIPTPATH/other_themes/picom.conf $HOME/.config/picom.conf

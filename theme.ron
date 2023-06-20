@@ -1,13 +1,13 @@
 // theme specific configuration (borders, colors)
 #![enable(implicit_some)]
 ThemeSetting (
-    border_width: 6,
-    margin: 10,
-    workpace_margin: 10,
+    border_width: 0,
+    margin: 0,
+    workpace_margin: 0,
     // to leave room for the sidebar
     gutter: [
         (
-            side: Top,
+            side: Bottom,
             value: 40,
         )
     ],

@@ -106,9 +106,9 @@ def connect(network):
 def print_status():
   status = os.popen('cat /sys/class/net/wlan0/operstate').read().strip()
   if status == "up":
-    print('直')
+    print('󰖩')
   else:
-    print('睊')
+    print('󰖪')
 
 def fix_network():
   os.system('systemctl restart NetworkManager')

@@ -23,7 +23,7 @@
 (defpoll MICMUTE :interval "3s" `amixer -D pulse sget Capture | awk "match(\\$0, /Left.*Capture [0-9]+ \\[[0-9]+%\\] \\[(on|off)\\]/, arr) {print arr[1]}"`)
 
 ;; brightness
-(defpoll BRIGHTNESS :interval "3s" `xbacklight -get`)
+(defpoll BRIGHTNESS :interval "9s" `ddcutil getvcp 10 | awk 'match($0, "current value = +([0-9]+),", arr) {print(arr[1])}'`)
 
 ;; weather
 (defpoll WEATHER_ICON :interval "60s" `./scripts/weather_info --icon`)
@@ -53,13 +53,14 @@
     (background-overlay :name "quit weather date wifi bluetoothctl volume-extra"))
 
 (defwindow bar
+  :stacking "bg"
+  :windowtype "dock"
+  :reserve (struts :side "bottom" :distance "36px")
   :geometry (geometry
     :x "0%"
     :y "0%"
     :width "100%"
-    :anchor "top left"
-    :reserve (struts :side "top" :distance "40px")
-    :windowtype "dock")
+    :anchor "bottom left")
     :class "Ayu-Bar"
     (bar))
 

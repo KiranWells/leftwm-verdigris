@@ -27,7 +27,7 @@
 (defwidget date []
   (box :class "date" :space-evenly false
       (box :class "datewords" :orientation "h" :halign "center" DATE)
-      (icon "")))
+      (icon :shift -25 "")))
 
 (defwidget weather []
   (button
@@ -76,8 +76,8 @@
       :halign "end"
     (icon {
         BT_IN_PROGRESS ? "" : 
-        BLUETOOTH_CONN == "0" ? "" : 
-        BLUETOOTH_DEV == "0" ? "" : ""
+        BLUETOOTH_CONN == "0" ? "󰂲" : 
+        BLUETOOTH_DEV == "0" ? "" : "󰂱"
         })
     (box :class "popup-main" 
       :orientation "v"

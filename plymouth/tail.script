@@ -88,12 +88,20 @@ while (1) {
 // Set animation opacity to 0 and make it invisible
 fun hide_animation() {
     animation.sprite.SetOpacity(0);
+    bar.background.sprite.SetOpacity(0);
+    bar.sprite_w.SetOpacity(0);
+    bar.sprite_c.SetOpacity(0);
+    bar.sprite_e.SetOpacity(0);
 }
 
 // Set animation opacity to 1 and make it visible
 fun show_animation() {
     animation.current_frame = 0;
     animation.sprite.SetOpacity(1);
+    bar.background.sprite.SetOpacity(0);
+    bar.sprite_w.SetOpacity(1);
+    bar.sprite_c.SetOpacity(1);
+    bar.sprite_e.SetOpacity(1);
 }
 
 fun refresh_callback() {
@@ -116,8 +124,10 @@ fun refresh_callback() {
 
         // Then update current frame
         // This stops at the end of the animation instead of looping
-        if (animation.current_frame < animation.length) 
-            animation.current_frame++;
+        animation.current_frame++;
+        if (animation.current_frame >= animation.length - 1) {
+            animation.current_frame = animation.length - 2;
+        } 
     } else if (global.status == "password") {
         hide_animation();
         hide_progress_bar();
@@ -139,16 +149,16 @@ bar.background.sprite.SetY(BAR_CENTER_PCT.y * screen.height - bar.background.ima
 // Load the progress bar
 bar.image_w = Image("progress-w.png");
 bar.sprite_w = Sprite(bar.image_w);
-bar.sprite_w.SetX(BAR_CENTER_PCT.x * screen.width - bar.background.image.GetWidth() / 2);
-bar.sprite_w.SetY(BAR_CENTER_PCT.y * screen.height - bar.background.image.GetHeight() / 2);
+bar.sprite_w.SetX(BAR_CENTER_PCT.x * screen.width - bar.background.image.GetWidth() / 2 + 4);
+bar.sprite_w.SetY(BAR_CENTER_PCT.y * screen.height - bar.background.image.GetHeight() / 2 + 3);
 bar.image_c = Image("progress-c.png");
 bar.sprite_c = Sprite();
 bar.sprite_c.SetX(BAR_CENTER_PCT.x * screen.width - bar.background.image.GetWidth() / 2 + 7);
-bar.sprite_c.SetY(BAR_CENTER_PCT.y * screen.height - bar.background.image.GetHeight() / 2);
+bar.sprite_c.SetY(BAR_CENTER_PCT.y * screen.height - bar.background.image.GetHeight() / 2 + 3);
 bar.image_e = Image("progress-e.png");
 bar.sprite_e = Sprite(bar.image_e);
 bar.sprite_e.SetX(BAR_CENTER_PCT.x * screen.width - bar.background.image.GetWidth() / 2 + 7);
-bar.sprite_e.SetY(BAR_CENTER_PCT.y * screen.height - bar.background.image.GetHeight() / 2);
+bar.sprite_e.SetY(BAR_CENTER_PCT.y * screen.height - bar.background.image.GetHeight() / 2 + 3);
 
 fun hide_progress_bar() {
     bar.sprite.SetOpacity(0);
@@ -165,7 +175,7 @@ fun boot_progress_callback(time, progress) {
     #debug ("boot time = " + time + ", boot progress = " + progress);
 
     // Grow the progress bar size with the current progress percent
-    bar.sprite_c.SetImage(bar.image_c.Scale(progress * (bar.background.image.GetWidth() - 26), bar.image.GetHeight()));
+    bar.sprite_c.SetImage(bar.image_c.Scale(progress * (bar.background.image.GetWidth() - 26), bar.image_c.GetHeight()));
     bar.sprite_e.SetX(BAR_CENTER_PCT.x * screen.width - bar.background.image.GetWidth() / 2 + 7 + progress * (bar.background.image.GetWidth() - 26));
 
 }

@@ -1,13 +1,13 @@
 # theme specific configuration (borders, colors)
 
-border_width = 6
+border_width = 0
 default_border_color = '#191724'
 floating_border_color = '#191724'
 focused_border_color = '#26233a'
-margin = 10
-workspace_margin = 10
+margin = 0
+workspace_margin = 0
 
 # to leave room for the sidebar
 [[gutter]]
-side = "Top"
+side = "Bottom"
 value = 40

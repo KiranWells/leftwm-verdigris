@@ -14,9 +14,11 @@
 
 :root {
     /* Dark Custom Colors */
-    --window-colour: #26233a;
-    --secondary-colour: #191724;
-    --inverted-colour: #e0def4;
+    --uc-base-colour: #26233a;
+    --uc-highlight-colour: #191724;
+    --uc-inverted-colour: #e0def4;
+    --uc-muted-colour: #6e6a86;
+    --uc-accent-colour: #31748f;
 
     /* Container Tab Colors */
     --uc-identity-color-blue: #31748f;

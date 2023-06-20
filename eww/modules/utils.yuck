@@ -14,7 +14,7 @@
   (box :style "min-width: ${width}px" ""))
 
 ;; a button and hidden slider which shows on hover
-(defwidget button-and-slider [value label ?shift ?onchange ?onclick ?tooltip]
+(defwidget button-and-slider [value label ?timeout ?shift ?onchange ?onclick ?tooltip]
       (box :orientation "h"
            :space-evenly false
            :tooltip tooltip
@@ -24,6 +24,7 @@
                  :active {onchange != ""}
                  :value value
                  :width 80
+                 :timeout timeout
                  :onchange onchange)
           (box :visible {!(onclick != "")}
                (icon label))
